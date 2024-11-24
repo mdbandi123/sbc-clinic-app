@@ -1,12 +1,17 @@
 package org.acumen.training.codes.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,6 +24,19 @@ public class Patient {
 	private String address;
 	private String contactNo;
 	private LocalDateTime registrationTime;
+	private String profileImage;
+	
+	@JsonIgnore
+	private List<AppointmentNotification> appointmentNotifications;
+	
+	@JsonIgnore
+	private List<Queue> queues;
+	
+	@JsonIgnore
+	private List<Appointment> appointments;
+	
+	@JsonIgnore
+	private List<MedicalCertificate> medicalCertificates;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -84,4 +102,50 @@ public class Patient {
 	public void setRegistrationTime(LocalDateTime registrationTime) {
 		this.registrationTime = registrationTime;
 	}
+
+	@Column(name = "profile_image", nullable = false)
+	public String getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
+	}
+
+	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+	public List<AppointmentNotification> getAppointmentNotifications() {
+		return appointmentNotifications;
+	}
+
+	public void setAppointmentNotifications(List<AppointmentNotification> appointmentNotifications) {
+		this.appointmentNotifications = appointmentNotifications;
+	}
+
+	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+	public List<Queue> getQueues() {
+		return queues;
+	}
+
+	public void setQueues(List<Queue> queues) {
+		this.queues = queues;
+	}
+
+	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+	public List<Appointment> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(List<Appointment> appointments) {
+		this.appointments = appointments;
+	}
+
+	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+	public List<MedicalCertificate> getMedicalCertificates() {
+		return medicalCertificates;
+	}
+
+	public void setMedicalCertificates(List<MedicalCertificate> medicalCertificates) {
+		this.medicalCertificates = medicalCertificates;
+	}
+
 }

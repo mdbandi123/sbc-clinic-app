@@ -2,23 +2,34 @@ package org.acumen.training.codes.model;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(catalog = "queue")
 public class Queue {
 	private Integer queueId;
-	private LocalDateTime checkIn;
+	private Boolean checkIn;
 	private String type;
 	private LocalDateTime startTime;
 	private LocalDateTime endTime;
 	private Integer fkPatientId;
 	private Integer fkReportId;
+	
+	@JsonIgnore
+	private Patient patient;
+	
+	@JsonIgnore
+	private Report report;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,11 +43,11 @@ public class Queue {
 	}
 
 	@Column(name = "check_in", nullable = false)
-	public LocalDateTime getCheckIn() {
+	public Boolean getCheckIn() {
 		return checkIn;
 	}
 
-	public void setCheckIn(LocalDateTime checkIn) {
+	public void setCheckIn(Boolean checkIn) {
 		this.checkIn = checkIn;
 	}
 
@@ -85,4 +96,23 @@ public class Queue {
 		this.fkReportId = fkReportId;
 	}
 
+	@ManyToOne
+	@JoinColumn(name = "fk_patient_id", insertable = false, updatable = false)
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	@OneToOne
+	@JoinColumn(name = "fk_report_id", insertable = false, updatable = false)
+	public Report getReport() {
+		return report;
+	}
+
+	public void setReport(Report report) {
+		this.report = report;
+	}
 }

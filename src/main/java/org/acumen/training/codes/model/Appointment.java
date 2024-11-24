@@ -1,22 +1,29 @@
 package org.acumen.training.codes.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(catalog = "appointment")
 public class Appointment {
 	private Integer appointmentId;
-	private LocalDate date;
+	private LocalDateTime date;
 	private Boolean isArrival;
 	private Integer fkPatientId;
 	private String remark;
+	
+	@JsonIgnore
+	private Patient patient;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,11 +37,11 @@ public class Appointment {
 	}
 
 	@Column(name = "date", nullable = false)
-	public LocalDate getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 
@@ -65,4 +72,13 @@ public class Appointment {
 		this.remark = remark;
 	}
 
+	@ManyToOne
+	@JoinColumn(name = "fk_patient_id", insertable = false, updatable = false)
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
 }

@@ -18,7 +18,8 @@ CREATE TABLE patient(
 	gender VARCHAR(10) NOT NULL,
 	address VARCHAR(70) NOT NULL,
 	contact_no VARCHAR(11) UNIQUE NOT NULL,
-	registration_time TIMESTAMP NOT NULL
+	registration_time TIMESTAMP NOT NULL,
+	profile_image VARCHAR(100)
 	
 );
 
@@ -30,19 +31,21 @@ CREATE TABLE staff(
 	address VARCHAR(70) NOT NULL,
 	contact_no VARCHAR(11) UNIQUE NOT NULL,
 	position VARCHAR(10) NOT NULL,
-	registration_time TIMESTAMP NOT NULL
+	registration_time TIMESTAMP NOT NULL,
+	profile_image VARCHAR(100)
 );
 
 CREATE TABLE report(
 	report_id INTEGER PRIMARY KEY DEFAULT NEXTVAL('report_seq'),
 	fk_staff_id INTEGER NOT NULL,
 	details VARCHAR(100) NOT NULL,
+	date TIMESTAMP NOT NULL,
 	FOREIGN KEY (fk_staff_id) REFERENCES staff(staff_id)
 );
 
 CREATE TABLE appointment(
 	appointment_id INTEGER PRIMARY KEY DEFAULT NEXTVAL('apt_seq'),
-	date DATE NOT NULL,
+	date TIMESTAMP NOT NULL,
 	is_arrival BOOLEAN NOT NULL,
 	fk_patient_id INTEGER NOT NULL,
 	remark VARCHAR(100) NOT NULL,
@@ -51,7 +54,7 @@ CREATE TABLE appointment(
 
 CREATE TABLE queue(
 	queue_id INTEGER PRIMARY KEY DEFAULT NEXTVAL('queue_seq'),
-	check_in TIMESTAMP NOT NULL,
+	check_in BOOLEAN NOT NULL,
 	type VARCHAR(15) NOT NULL,
 	start_time TIMESTAMP NOT NULL,
 	end_time TIMESTAMP NOT NULL,
@@ -64,7 +67,7 @@ CREATE TABLE queue(
 CREATE TABLE medical_certificate(
 	medical_certificate_id INTEGER PRIMARY KEY DEFAULT NEXTVAL('med_cert_seq'),
 	start_date DATE NOT NULL,
-	day DATE NOT NULL,
+	day INTEGER NOT NULL,
 	reason VARCHAR(100) NOT NULL,
 	fk_patient_id INTEGER NOT NULL,
 	FOREIGN KEY (fk_patient_id) REFERENCES patient(patient_id) ON UPDATE CASCADE

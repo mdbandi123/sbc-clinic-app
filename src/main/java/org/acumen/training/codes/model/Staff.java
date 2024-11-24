@@ -1,12 +1,16 @@
 package org.acumen.training.codes.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,6 +24,10 @@ public class Staff {
 	private String contactNo;
 	private String position;
 	private LocalDateTime registrationTime;
+    private String profileImage;
+    
+	@JsonIgnore
+    private List<Report> reports;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -73,7 +81,7 @@ public class Staff {
 		return contactNo;
 	}
 
-	public void setContact(String contactNo) {
+	public void setContactNo(String contactNo) {
 		this.contactNo = contactNo;
 	}
 
@@ -94,5 +102,22 @@ public class Staff {
 	public void setRegistrationTime(LocalDateTime registrationTime) {
 		this.registrationTime = registrationTime;
 	}
+	
+    @Column(name = "profile_image", nullable = false)
+    public String getProfileImage() {
+		return profileImage;
+	}
 
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
+	}
+
+	@OneToMany(mappedBy = "staff")
+	public List<Report> getReports() {
+		return reports;
+	}
+
+	public void setReports(List<Report> reports) {
+		this.reports = reports;
+	}
 }
