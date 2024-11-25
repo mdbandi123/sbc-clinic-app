@@ -57,9 +57,9 @@ CREATE TABLE queue(
 	check_in BOOLEAN NOT NULL,
 	type VARCHAR(15) NOT NULL,
 	start_time TIMESTAMP NOT NULL,
-	end_time TIMESTAMP NOT NULL,
+	end_time TIMESTAMP,
 	fk_patient_id INTEGER NOT NULL,
-	fk_report_id INTEGER UNIQUE NOT NULL,
+	fk_report_id INTEGER UNIQUE,
 	FOREIGN KEY (fk_patient_id) REFERENCES patient(patient_id) ON UPDATE CASCADE,
 	FOREIGN KEY (fk_report_id) REFERENCES report(report_id) ON UPDATE CASCADE
 );

@@ -69,7 +69,7 @@ public class Queue {
 		this.startTime = startTime;
 	}
 
-	@Column(name = "end_time", nullable = false)
+	@Column(name = "end_time")
 	public LocalDateTime getEndTime() {
 		return endTime;
 	}
@@ -87,7 +87,7 @@ public class Queue {
 		this.fkPatientId = fkPatientId;
 	}
 
-	@Column(name = "fk_report_id", nullable = false, unique = true)
+	@Column(name = "fk_report_id", unique = true)
 	public Integer getFkReportId() {
 		return fkReportId;
 	}
