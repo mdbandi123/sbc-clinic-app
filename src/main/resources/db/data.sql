@@ -19,12 +19,12 @@ VALUES
   (3, 'Consultation report for Pedro Gonzales', NOW()),
   (4, 'Blood test result for Ana Reyes', NOW());
 
-INSERT INTO appointment (date, is_arrival, fk_patient_id, remark)
+INSERT INTO appointment (date, is_arrival, fk_patient_id, remark, is_confirmed)
 VALUES
-  (NOW() + INTERVAL '1 hour', TRUE, 1, 'General checkup with Dr. John Smith'),
-  (NOW() + INTERVAL '2 hour', FALSE, 2, 'Follow-up appointment with Dr. Michael Brown'),
-  (NOW() + INTERVAL '3 hour', TRUE, 3, 'Routine health check-up with Nurse Clara'),
-  (NOW() + INTERVAL '4 hour', FALSE, 4, 'Initial consultation with Nurse Emily');
+  (NOW() + INTERVAL '1 hour', TRUE, 1, 'General checkup with Dr. John Smith', TRUE),
+  (NOW() + INTERVAL '2 hour', FALSE, 2, 'Follow-up appointment with Dr. Michael Brown', TRUE ),
+  (NOW() + INTERVAL '3 hour', TRUE, 3, 'Routine health check-up with Nurse Clara', TRUE),
+  (NOW() + INTERVAL '4 hour', FALSE, 4, 'Initial consultation with Nurse Emily', TRUE);
 
 INSERT INTO queue (check_in, type, start_time, end_time, fk_patient_id, fk_report_id)
 VALUES

@@ -19,22 +19,7 @@ public class PatientDao {
 
 	@PersistenceContext
 	EntityManager em;
-	
-//	@Transactional
-//	public List<Patient> getAllPatients(){
-//		List<Patient> records = new ArrayList<>();
-//		CriteriaBuilder builder = em.getCriteriaBuilder();
-//		CriteriaQuery sql = builder.createQuery(Patient.class);
-//		Root<Patient> from = sql.from(Patient.class);
-//		
-//		sql.select(from);
-//		
-//		TypedQuery<Patient> query = em.createQuery(sql);
-//		records = query.getResultList();
-//		
-//		return records;
-//	}
-	
+		
 	@Transactional
 	public boolean insertPatient(Patient patient) {
 		try {

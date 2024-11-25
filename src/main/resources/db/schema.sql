@@ -49,6 +49,7 @@ CREATE TABLE appointment(
 	is_arrival BOOLEAN NOT NULL,
 	fk_patient_id INTEGER NOT NULL,
 	remark VARCHAR(100) NOT NULL,
+	is_confirmed BOOLEAN NOT NULL,
 	FOREIGN KEY (fk_patient_id) REFERENCES patient(patient_id) ON UPDATE CASCADE
 );
 

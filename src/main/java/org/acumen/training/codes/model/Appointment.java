@@ -21,6 +21,7 @@ public class Appointment {
 	private Boolean isArrival;
 	private Integer fkPatientId;
 	private String remark;
+	private Boolean isConfirmed;
 	
 	@JsonIgnore
 	private Patient patient;
@@ -70,6 +71,15 @@ public class Appointment {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+	
+	@Column(name = "is_confirmed", nullable = false)
+	public Boolean getIsConfirmed() {
+		return isConfirmed;
+	}
+
+	public void setIsConfirmed(Boolean isConfirmed) {
+		this.isConfirmed = isConfirmed;
 	}
 
 	@ManyToOne
