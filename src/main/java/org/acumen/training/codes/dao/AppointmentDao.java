@@ -1,13 +1,10 @@
 package org.acumen.training.codes.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.acumen.training.codes.model.Appointment;
 import org.acumen.training.codes.model.Patient;
-import org.acumen.training.codes.model.Queue;
 import org.acumen.training.codes.model.dto.AppointmentPatientDTO;
-import org.acumen.training.codes.model.dto.QueuePatientDTO;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
