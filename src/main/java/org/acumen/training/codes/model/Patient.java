@@ -103,7 +103,7 @@ public class Patient {
 		this.registrationTime = registrationTime;
 	}
 
-	@Column(name = "profile_image", nullable = false)
+	@Column(name = "profile_image")
 	public String getProfileImage() {
 		return profileImage;
 	}
