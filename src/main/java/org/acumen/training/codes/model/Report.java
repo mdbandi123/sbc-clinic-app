@@ -1,5 +1,7 @@
 package org.acumen.training.codes.model;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -19,6 +21,7 @@ public class Report {
 	private Integer reportId;
 	private Integer fkStaffId;
 	private String details;
+	private LocalDateTime date;
 	
 	@JsonIgnore
 	private Queue queue;
@@ -53,6 +56,15 @@ public class Report {
 
 	public void setDetails(String details) {
 		this.details = details;
+	}
+	
+	@Column(name = "date", nullable = false)
+	public LocalDateTime getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDateTime date) {
+		this.date = date;
 	}
 
 	@OneToOne(mappedBy = "report", cascade = CascadeType.ALL)
