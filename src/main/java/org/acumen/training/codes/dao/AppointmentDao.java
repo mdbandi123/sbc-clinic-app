@@ -1,5 +1,6 @@
 package org.acumen.training.codes.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.acumen.training.codes.model.Appointment;
@@ -34,10 +35,6 @@ public class AppointmentDao {
 		return false;
 	}
 	
-	@Transactional
-	public Appointment getAppointmentById(Integer id) {
-		return em.find(Appointment.class, id);
-	}
 	
 	@Transactional
 	public List<AppointmentPatientDTO> getAppointmentsByName(String name){
@@ -47,11 +44,80 @@ public class AppointmentDao {
 		Root<Appointment> appointmentRoot = sql.from(Appointment.class);
 		Join<Appointment, Patient> patientJoin = appointmentRoot.join("patient", JoinType.INNER);
 
-		sql.multiselect(patientJoin.get("name"),
+		sql.multiselect(
+				appointmentRoot.get("appointmentId"), 
+				patientJoin.get("name"),
 				patientJoin.get("icNo"), 
 				appointmentRoot.get("date"), 
-				appointmentRoot.get("remark")
+				appointmentRoot.get("remark"),
+				appointmentRoot.get("isArrival"),
+				appointmentRoot.get("isConfirmed")
 		).where(cb.equal(patientJoin.get("name"), name));
+
+		TypedQuery<AppointmentPatientDTO> typedQuery = em.createQuery(sql);
+		return typedQuery.getResultList();
+	}
+	
+	@Transactional
+	public List<AppointmentPatientDTO> getAppointmentsByIcNo(String icNo){
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<AppointmentPatientDTO> sql = cb.createQuery(AppointmentPatientDTO.class);
+
+		Root<Appointment> appointmentRoot = sql.from(Appointment.class);
+		Join<Appointment, Patient> patientJoin = appointmentRoot.join("patient", JoinType.INNER);
+
+		sql.multiselect(
+				appointmentRoot.get("appointmentId"), 
+				patientJoin.get("name"),
+				patientJoin.get("icNo"), 
+				appointmentRoot.get("date"), 
+				appointmentRoot.get("remark"),
+				appointmentRoot.get("isArrival"),
+				appointmentRoot.get("isConfirmed")
+		).where(cb.equal(patientJoin.get("icNo"), icNo));
+
+		TypedQuery<AppointmentPatientDTO> typedQuery = em.createQuery(sql);
+		return typedQuery.getResultList();
+	}
+	
+	@Transactional
+	public List<AppointmentPatientDTO> getAppointmentsById(Integer id){
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<AppointmentPatientDTO> sql = cb.createQuery(AppointmentPatientDTO.class);
+
+		Root<Appointment> appointmentRoot = sql.from(Appointment.class);
+		Join<Appointment, Patient> patientJoin = appointmentRoot.join("patient", JoinType.INNER);
+
+		sql.multiselect(
+				appointmentRoot.get("appointmentId"), 
+				patientJoin.get("name"),
+				patientJoin.get("icNo"), 
+				appointmentRoot.get("date"), 
+				appointmentRoot.get("remark"),
+				appointmentRoot.get("isArrival"),
+				appointmentRoot.get("isConfirmed")
+		).where(cb.equal(appointmentRoot.get("appointmentId"), id));
+
+		TypedQuery<AppointmentPatientDTO> typedQuery = em.createQuery(sql);
+		return typedQuery.getResultList();
+	}
+	
+	public List<AppointmentPatientDTO> getAllAppointments(){
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<AppointmentPatientDTO> sql = cb.createQuery(AppointmentPatientDTO.class);
+
+		Root<Appointment> appointmentRoot = sql.from(Appointment.class);
+		Join<Appointment, Patient> patientJoin = appointmentRoot.join("patient", JoinType.INNER);
+
+		sql.multiselect(
+				appointmentRoot.get("appointmentId"), 
+				patientJoin.get("name"),
+				patientJoin.get("icNo"), 
+				appointmentRoot.get("date"), 
+				appointmentRoot.get("remark"),
+				appointmentRoot.get("isArrival"),
+				appointmentRoot.get("isConfirmed")
+		);
 
 		TypedQuery<AppointmentPatientDTO> typedQuery = em.createQuery(sql);
 		return typedQuery.getResultList();

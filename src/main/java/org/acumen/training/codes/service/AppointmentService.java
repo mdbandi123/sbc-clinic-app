@@ -20,12 +20,20 @@ public class AppointmentService {
 		return appointmentDao.insertAppointment(appointment);
 	}
 	
-	public Appointment getAppointmentById(Integer id) {
-		return appointmentDao.getAppointmentById(id);
+	public  List<AppointmentPatientDTO> getAppointmentById(Integer id) {
+		return appointmentDao.getAppointmentsById(id);
+	}
+	
+	public  List<AppointmentPatientDTO> getAppointmentByIcNo(String icno) {
+		return appointmentDao.getAppointmentsByIcNo(icno);
 	}
 	
 	public List<AppointmentPatientDTO> getAppointmentsByName(String name){
 		return appointmentDao.getAppointmentsByName(name);
+	}
+	
+	public List<AppointmentPatientDTO> getAllAppointments(){
+		return appointmentDao.getAllAppointments();
 	}
 	
 	public boolean updateAppointmentArrivalStatus(Integer id, Appointment appointment) {

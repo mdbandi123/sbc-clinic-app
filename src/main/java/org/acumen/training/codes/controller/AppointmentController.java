@@ -29,13 +29,23 @@ public class AppointmentController {
 	}
 	
 	@GetMapping("/details/id/{id}")
-	public Appointment getAppointmentById(@PathVariable Integer id) {
+	public List<AppointmentPatientDTO> getAppointmentById(@PathVariable Integer id) {
 		return appointmentService.getAppointmentById(id);
 	}
 	
 	@GetMapping("/details/name/{name}")
 	public List<AppointmentPatientDTO> getAppointmentsByName(@PathVariable String name){
 		return appointmentService.getAppointmentsByName(name);
+	}
+	
+	@GetMapping("/details/icno/{name}")
+	public List<AppointmentPatientDTO> getAppointmentsByIcNo(@PathVariable String icno){
+		return appointmentService.getAppointmentByIcNo(icno);
+	}
+	
+	@GetMapping("/details/list/all")
+	public List<AppointmentPatientDTO> getAllAppointments(){
+		return appointmentService.getAllAppointments();
 	}
 	
 	@PatchMapping("/update/arrival/{id}")
