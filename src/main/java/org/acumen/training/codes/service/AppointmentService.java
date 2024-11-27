@@ -8,6 +8,8 @@ import org.acumen.training.codes.model.dto.AppointmentPatientDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.mail.MessagingException;
+
 @Service
 public class AppointmentService {
 	
@@ -48,6 +50,11 @@ public class AppointmentService {
 	}
 	
 	public boolean updateAppointmentConfirmationStatus(Integer id, Appointment appointment) {
+        try {
+            emailService.sendEmail("mdsumang.091@gmail.com", "testemail", "testbody");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
 		return appointmentDao.updateAppointmentConfirmationStatus(id, appointment);
 	}
 }
