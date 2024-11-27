@@ -24,7 +24,7 @@ public class Patient {
 	private String address;
 	private String contactNo;
 	private LocalDateTime registrationTime;
-	private String profileImage;
+	private String email;
 	
 	@JsonIgnore
 	private List<AppointmentNotification> appointmentNotifications;
@@ -103,13 +103,13 @@ public class Patient {
 		this.registrationTime = registrationTime;
 	}
 
-	@Column(name = "profile_image")
-	public String getProfileImage() {
-		return profileImage;
+	@Column(name = "email", nullable = false)
+	public String getEmail() {
+		return email;
 	}
 
-	public void setProfileImage(String profileImage) {
-		this.profileImage = profileImage;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)

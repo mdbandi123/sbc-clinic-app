@@ -52,7 +52,8 @@ public class AppointmentDao {
 				appointmentRoot.get("date"), 
 				appointmentRoot.get("remark"),
 				appointmentRoot.get("isArrival"),
-				appointmentRoot.get("isConfirmed")
+				appointmentRoot.get("isConfirmed"),
+				patientJoin.get("email")
 		).where(cb.equal(patientJoin.get("name"), name));
 
 		TypedQuery<AppointmentPatientDTO> typedQuery = em.createQuery(sql);
@@ -75,7 +76,8 @@ public class AppointmentDao {
 				appointmentRoot.get("date"), 
 				appointmentRoot.get("remark"),
 				appointmentRoot.get("isArrival"),
-				appointmentRoot.get("isConfirmed")
+				appointmentRoot.get("isConfirmed"),
+				patientJoin.get("email")
 		).where(cb.equal(patientJoin.get("icNo"), icNo));
 
 		TypedQuery<AppointmentPatientDTO> typedQuery = em.createQuery(sql);
@@ -98,7 +100,8 @@ public class AppointmentDao {
 				appointmentRoot.get("date"), 
 				appointmentRoot.get("remark"),
 				appointmentRoot.get("isArrival"),
-				appointmentRoot.get("isConfirmed")
+				appointmentRoot.get("isConfirmed"),
+				patientJoin.get("email")
 		).where(cb.equal(appointmentRoot.get("appointmentId"), id));
 
 		TypedQuery<AppointmentPatientDTO> typedQuery = em.createQuery(sql);
@@ -116,11 +119,12 @@ public class AppointmentDao {
 				appointmentRoot.get("appointmentId"),
 				patientJoin.get("patientId"),
 				patientJoin.get("name"),
-				patientJoin.get("icNo"), 
+				patientJoin.get("icNo"),
 				appointmentRoot.get("date"), 
 				appointmentRoot.get("remark"),
 				appointmentRoot.get("isArrival"),
-				appointmentRoot.get("isConfirmed")
+				appointmentRoot.get("isConfirmed"),
+				patientJoin.get("email")
 		);
 
 		TypedQuery<AppointmentPatientDTO> typedQuery = em.createQuery(sql);

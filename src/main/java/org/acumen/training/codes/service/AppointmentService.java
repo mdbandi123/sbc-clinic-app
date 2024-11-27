@@ -17,6 +17,9 @@ public class AppointmentService {
 	@Autowired
 	private QueueService queueService;
 	
+	@Autowired
+	private EmailService emailService;
+	
 	public boolean insertAppointment(Appointment appointment) {
 		appointment.setIsArrival(false);
 		appointment.setIsConfirmed(false);

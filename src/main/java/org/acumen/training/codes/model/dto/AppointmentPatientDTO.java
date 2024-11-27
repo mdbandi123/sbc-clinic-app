@@ -11,9 +11,10 @@ public class AppointmentPatientDTO {
 	private String remark;
 	private Boolean isArrival;
 	private Boolean isConfirmed;
+	private String email;
 
 	public AppointmentPatientDTO(Integer appointmentId, Integer patientId, String name, String icNo, LocalDateTime date, String remark,
-			Boolean isArrival, Boolean isConfirmed) {
+			Boolean isArrival, Boolean isConfirmed, String email) {
 		this.appointmentId = appointmentId;
 		this.patientId = patientId;
 		this.name = name;
@@ -22,6 +23,7 @@ public class AppointmentPatientDTO {
 		this.remark = remark;
 		this.isArrival = isArrival;
 		this.isConfirmed = isConfirmed;
+		this.email = email;
 	}
 
 	public Integer getAppointmentId() {
@@ -88,4 +90,13 @@ public class AppointmentPatientDTO {
 		this.isConfirmed = isConfirmed;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
 }

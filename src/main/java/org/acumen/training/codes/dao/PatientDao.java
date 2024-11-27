@@ -79,7 +79,7 @@ public class PatientDao {
 			patient.setGender(newPatientDetails.getGender());
 			patient.setAddress(newPatientDetails.getAddress());
 			patient.setContactNo(newPatientDetails.getContactNo());
-			patient.setProfileImage(newPatientDetails.getProfileImage());
+			patient.setEmail(newPatientDetails.getEmail());
 			
 			em.merge(patient);
 			return true;

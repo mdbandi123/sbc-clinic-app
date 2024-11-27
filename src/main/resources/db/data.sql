@@ -1,16 +1,16 @@
-INSERT INTO patient (name, ic_no, gender, address, contact_no, registration_time, profile_image)
+INSERT INTO patient (name, ic_no, gender, address, contact_no, registration_time, email)
 VALUES
-  ('Juan dela Cruz', '123456789', 'Male', '123 Main St, Manila', '09171234567', NOW(), 'juan.jpg'),
-  ('Maria Santos', '987654321', 'Female', '456 Oak St, Quezon City', '09181234567', NOW(), 'maria.jpg'),
-  ('Pedro Gonzales', '112233445', 'Male', '789 Pine St, Makati', '09191234567', NOW(), 'pedro.jpg'),
-  ('Ana Reyes', '667788990', 'Female', '101 Maple St, Pasig', '09201234567', NOW(), 'ana.jpg');
+  ('Juan dela Cruz', '123456789', 'Male', '123 Main St, Manila', '09171234567', NOW(), 'juan@example.com'),
+  ('Maria Santos', '987654321', 'Female', '456 Oak St, Quezon City', '09181234567', NOW(), 'maria@example.com'),
+  ('Pedro Gonzales', '112233445', 'Male', '789 Pine St, Makati', '09191234567', NOW(), 'pedro@example.com'),
+  ('Ana Reyes', '667788990', 'Female', '101 Maple St, Pasig', '09201234567', NOW(), 'ana@example.com');
 
-INSERT INTO staff (name, ic_no, gender, address, contact_no, position, registration_time, profile_image)
+INSERT INTO staff (name, ic_no, gender, address, contact_no, position, registration_time, email)
 VALUES
-  ('Dr. John Smith', '998877665', 'Male', '123 Doctor Ave, Manila', '09172345678', 'Doctor', NOW(), 'john.jpg'),
-  ('Nurse Clara Jones', '556677889', 'Female', '456 Nurse St, Quezon City', '09183456789', 'Nurse', NOW(), 'clara.jpg'),
-  ('Dr. Michael Brown', '334455667', 'Male', '789 Medical Rd, Makati', '09202345678', 'Doctor', NOW(), 'michael.jpg'),
-  ('Nurse Emily White', '223344556', 'Female', '101 Care St, Pasig', '09213456789', 'Nurse', NOW(), 'emily.jpg');
+  ('Dr. John Smith', '998877665', 'Male', '123 Doctor Ave, Manila', '09172345678', 'Doctor', NOW(), 'john.smith@example.com'),
+  ('Nurse Clara Jones', '556677889', 'Female', '456 Nurse St, Quezon City', '09183456789', 'Nurse', NOW(), 'clara.jones@example.com'),
+  ('Dr. Michael Brown', '334455667', 'Male', '789 Medical Rd, Makati', '09202345678', 'Doctor', NOW(), 'michael.brown@example.com'),
+  ('Nurse Emily White', '223344556', 'Female', '101 Care St, Pasig', '09213456789', 'Nurse', NOW(), 'emily.white@example.com');
 
 INSERT INTO report (fk_staff_id, details, date)
 VALUES
@@ -22,7 +22,7 @@ VALUES
 INSERT INTO appointment (date, is_arrival, fk_patient_id, remark, is_confirmed)
 VALUES
   (NOW() + INTERVAL '1 hour', TRUE, 1, 'General checkup with Dr. John Smith', TRUE),
-  (NOW() + INTERVAL '2 hour', FALSE, 2, 'Follow-up appointment with Dr. Michael Brown', TRUE ),
+  (NOW() + INTERVAL '2 hour', FALSE, 2, 'Follow-up appointment with Dr. Michael Brown', TRUE),
   (NOW() + INTERVAL '3 hour', TRUE, 3, 'Routine health check-up with Nurse Clara', TRUE),
   (NOW() + INTERVAL '4 hour', FALSE, 4, 'Initial consultation with Nurse Emily', TRUE);
 

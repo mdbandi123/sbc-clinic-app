@@ -24,7 +24,7 @@ public class Staff {
 	private String contactNo;
 	private String position;
 	private LocalDateTime registrationTime;
-    private String profileImage;
+    private String email;
     
 	@JsonIgnore
     private List<Report> reports;
@@ -103,13 +103,13 @@ public class Staff {
 		this.registrationTime = registrationTime;
 	}
 	
-    @Column(name = "profile_image")
-    public String getProfileImage() {
-		return profileImage;
+	@Column(name = "email", nullable = false)
+	public String getEmail() {
+		return email;
 	}
 
-	public void setProfileImage(String profileImage) {
-		this.profileImage = profileImage;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@OneToMany(mappedBy = "staff")

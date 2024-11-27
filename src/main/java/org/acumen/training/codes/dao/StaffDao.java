@@ -44,7 +44,7 @@ public class StaffDao {
 			staff.setAddress(newStaffDetails.getAddress());
 			staff.setContactNo(newStaffDetails.getContactNo());
 			staff.setPosition(newStaffDetails.getPosition());
-			staff.setProfileImage(newStaffDetails.getProfileImage());
+			staff.setEmail(newStaffDetails.getEmail());
 			
 			em.merge(staff);
 			return true;

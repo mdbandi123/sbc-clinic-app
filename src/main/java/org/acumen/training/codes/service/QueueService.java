@@ -12,15 +12,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class QueueService {
-	
+
 	@Autowired
 	private QueueDao queueDao;
-	
-	public List<QueuePatientDTO> getQueueOfPatients(){
+
+	public List<QueuePatientDTO> getQueueOfPatients() {
 		return queueDao.getQueueOfPatients();
 	}
-	
-	
+
 	public boolean insertToQueue(Appointment appointment) {
 		Queue queue = new Queue();
 		queue.setCheckIn(false);
@@ -31,11 +30,11 @@ public class QueueService {
 		queue.setFkReportId(null);
 		return queueDao.insertToQueue(queue);
 	}
-	
+
 	public boolean updateQueueType(Integer id) {
 		return queueDao.updateQueueType(id, "Queue");
 	}
-	
+
 	public boolean updateCheckIn(Integer id) {
 		return queueDao.updateCheckIn(id, true, LocalDateTime.now());
 	}

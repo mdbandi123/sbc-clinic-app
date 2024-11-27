@@ -19,7 +19,7 @@ CREATE TABLE patient(
 	address VARCHAR(70) NOT NULL,
 	contact_no VARCHAR(11) UNIQUE NOT NULL,
 	registration_time TIMESTAMP NOT NULL,
-	profile_image VARCHAR(100)
+	email VARCHAR(100) NOT NULL
 	
 );
 
@@ -32,7 +32,7 @@ CREATE TABLE staff(
 	contact_no VARCHAR(11) UNIQUE NOT NULL,
 	position VARCHAR(10) NOT NULL,
 	registration_time TIMESTAMP NOT NULL,
-	profile_image VARCHAR(100)
+	email VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE report(
