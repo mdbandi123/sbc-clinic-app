@@ -15,6 +15,8 @@ public class AppointmentService {
 	private AppointmentDao appointmentDao;
 	
 	public boolean insertAppointment(Appointment appointment) {
+		appointment.setIsArrival(false);
+		appointment.setIsConfirmed(false);
 		return appointmentDao.insertAppointment(appointment);
 	}
 	
