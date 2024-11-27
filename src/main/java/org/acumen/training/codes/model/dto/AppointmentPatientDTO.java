@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class AppointmentPatientDTO {
 	private Integer appointmentId;
+	private Integer patientId;
 	private String name;
 	private String icNo;
 	private LocalDateTime date;
@@ -11,9 +12,10 @@ public class AppointmentPatientDTO {
 	private Boolean isArrival;
 	private Boolean isConfirmed;
 
-	public AppointmentPatientDTO(Integer appointmentId, String name, String icNo, LocalDateTime date, String remark,
+	public AppointmentPatientDTO(Integer appointmentId, Integer patientId, String name, String icNo, LocalDateTime date, String remark,
 			Boolean isArrival, Boolean isConfirmed) {
 		this.appointmentId = appointmentId;
+		this.patientId = patientId;
 		this.name = name;
 		this.icNo = icNo;
 		this.date = date;
@@ -28,6 +30,14 @@ public class AppointmentPatientDTO {
 
 	public void setAppointmentId(Integer appointmentId) {
 		this.appointmentId = appointmentId;
+	}
+	
+	public Integer getPatientId() {
+		return patientId;
+	}
+
+	public void setPatientId(Integer patientId) {
+		this.patientId = patientId;
 	}
 
 	public String getName() {

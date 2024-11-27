@@ -14,6 +14,9 @@ public class AppointmentService {
 	@Autowired
 	private AppointmentDao appointmentDao;
 	
+	@Autowired
+	private QueueService queueService;
+	
 	public boolean insertAppointment(Appointment appointment) {
 		appointment.setIsArrival(false);
 		appointment.setIsConfirmed(false);
@@ -37,11 +40,11 @@ public class AppointmentService {
 	}
 	
 	public boolean updateAppointmentArrivalStatus(Integer id, Appointment appointment) {
-		return appointmentDao.updateAppointmentArrivalStatus(id, appointment);
+		appointmentDao.updateAppointmentArrivalStatus(id, appointment);
+		return queueService.insertToQueue(appointment);
 	}
 	
 	public boolean updateAppointmentConfirmationStatus(Integer id, Appointment appointment) {
 		return appointmentDao.updateAppointmentConfirmationStatus(id, appointment);
-
 	}
 }

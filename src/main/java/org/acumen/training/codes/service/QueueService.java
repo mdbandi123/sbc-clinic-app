@@ -24,8 +24,8 @@ public class QueueService {
 	public boolean insertToQueue(Appointment appointment) {
 		Queue queue = new Queue();
 		queue.setCheckIn(false);
-		queue.setType("Appointment");
-		queue.setStartTime(appointment.getDate());
+		queue.setType("Queue");
+		queue.setStartTime(LocalDateTime.now());
 		queue.setEndTime(null);
 		queue.setFkPatientId(appointment.getFkPatientId());
 		queue.setFkReportId(null);

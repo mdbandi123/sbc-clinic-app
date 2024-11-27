@@ -46,6 +46,7 @@ public class AppointmentDao {
 
 		sql.multiselect(
 				appointmentRoot.get("appointmentId"), 
+				patientJoin.get("patientId"),
 				patientJoin.get("name"),
 				patientJoin.get("icNo"), 
 				appointmentRoot.get("date"), 
@@ -67,7 +68,8 @@ public class AppointmentDao {
 		Join<Appointment, Patient> patientJoin = appointmentRoot.join("patient", JoinType.INNER);
 
 		sql.multiselect(
-				appointmentRoot.get("appointmentId"), 
+				appointmentRoot.get("appointmentId"),
+				patientJoin.get("patientId"),
 				patientJoin.get("name"),
 				patientJoin.get("icNo"), 
 				appointmentRoot.get("date"), 
@@ -89,7 +91,8 @@ public class AppointmentDao {
 		Join<Appointment, Patient> patientJoin = appointmentRoot.join("patient", JoinType.INNER);
 
 		sql.multiselect(
-				appointmentRoot.get("appointmentId"), 
+				appointmentRoot.get("appointmentId"),
+				patientJoin.get("patientId"),
 				patientJoin.get("name"),
 				patientJoin.get("icNo"), 
 				appointmentRoot.get("date"), 
@@ -110,7 +113,8 @@ public class AppointmentDao {
 		Join<Appointment, Patient> patientJoin = appointmentRoot.join("patient", JoinType.INNER);
 
 		sql.multiselect(
-				appointmentRoot.get("appointmentId"), 
+				appointmentRoot.get("appointmentId"),
+				patientJoin.get("patientId"),
 				patientJoin.get("name"),
 				patientJoin.get("icNo"), 
 				appointmentRoot.get("date"), 
