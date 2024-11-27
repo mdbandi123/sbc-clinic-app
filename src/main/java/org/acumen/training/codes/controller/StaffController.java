@@ -36,4 +36,20 @@ public class StaffController {
 	public List<Staff> getAllStaff(){
 		return staffService.getAllStaff();
 	}
+	
+	@GetMapping("/details/id/{id}")
+	public List<Staff> getStaffById(@PathVariable Integer id) {
+		return staffService.getStaffById(id);
+	}
+
+	@GetMapping("/details/icno/{icno}")
+	public List<Staff> getStaffByIcNo(@PathVariable String icno) {
+		return staffService.getStaffByIcNo(icno);
+	}
+
+
+	@GetMapping("/details/name/{name}")
+	public List<Staff> getStaffByName(@PathVariable String name) {
+		return staffService.getStaffByName(name);
+	}
 }

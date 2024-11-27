@@ -46,4 +46,9 @@ public class PatientController {
 	public boolean updatePatient(@PathVariable Integer id, @RequestBody Patient patient) {
 		return patientService.updatePatient(id, patient);
 	}
+	
+	@GetMapping("/details/list/all")
+	public List<Patient> getAllPatients() {
+		return patientService.getAllPatients();
+	}
 }

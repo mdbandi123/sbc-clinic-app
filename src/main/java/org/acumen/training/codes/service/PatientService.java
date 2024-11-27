@@ -34,4 +34,8 @@ public class PatientService {
 	public boolean updatePatient(Integer id, Patient patient) {
 		return patientDao.updatePatient(id, patient);
 	}
+	
+	public List<Patient> getAllPatients() {
+		return patientDao.getAllPatients();
+	}
 }

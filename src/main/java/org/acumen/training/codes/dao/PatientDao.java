@@ -88,4 +88,19 @@ public class PatientDao {
 		}
 		return false;
 	}
+	
+	@Transactional
+	public List<Patient> getAllPatients() {
+		List<Patient> records = new ArrayList<>();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Patient> sql = cb.createQuery(Patient.class);
+		Root<Patient> root = sql.from(Patient.class);
+		
+		sql.select(root);
+		
+		TypedQuery<Patient> query = em.createQuery(sql);
+		records = query.getResultList();
+		
+		return records;
+	}
 }

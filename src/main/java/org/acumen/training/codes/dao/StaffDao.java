@@ -68,4 +68,42 @@ public class StaffDao {
 		
 		return records;
 	}
+	
+	@Transactional
+	public List<Staff> getStaffById(Integer id) {
+		List<Staff> records = new ArrayList<>();
+		Staff staff = em.find(Staff.class, id);
+		records.add(staff);
+		return records;
+	}
+	
+	@Transactional
+	public List<Staff> getStaffByIcNo(String icno) {
+		List<Staff> records = new ArrayList<>();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Staff> sql = cb.createQuery(Staff.class);
+		Root<Staff> root = sql.from(Staff.class);
+		
+		sql.select(root).where(cb.equal(root.get("icNo"), icno));
+		
+		TypedQuery<Staff> query = em.createQuery(sql);
+		records = query.getResultList();
+		
+		return records;
+	}
+	
+	@Transactional
+	public List<Staff> getStaffByName(String name) {
+		List<Staff> records = new ArrayList<>();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Staff> sql = cb.createQuery(Staff.class);
+		Root<Staff> root = sql.from(Staff.class);
+		
+		sql.select(root).where(cb.equal(root.get("name"), name));
+		
+		TypedQuery<Staff> query = em.createQuery(sql);
+		records = query.getResultList();
+		
+		return records;
+	}
 }
