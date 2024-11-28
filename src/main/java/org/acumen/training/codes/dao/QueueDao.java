@@ -33,12 +33,38 @@ public class QueueDao {
 		Root<Queue> queueRoot = sql.from(Queue.class);
 		Join<Queue, Patient> patientJoin = queueRoot.join("patient", JoinType.INNER);
 
-		sql.multiselect(patientJoin.get("name"),
+		sql.multiselect(
+				queueRoot.get("queueId"), 
+				patientJoin.get("name"),
 				patientJoin.get("icNo"), 
 				queueRoot.get("startTime"), 
 				queueRoot.get("endTime"),
-				queueRoot.get("type")
+				queueRoot.get("type"),
+				queueRoot.get("checkIn")
 		);
+
+		TypedQuery<QueuePatientDTO> typedQuery = em.createQuery(sql);
+		return typedQuery.getResultList();
+	}
+	
+	@Transactional
+	public List<QueuePatientDTO> getQueueOfPatientsNotCheckedIn() {
+
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<QueuePatientDTO> sql = cb.createQuery(QueuePatientDTO.class);
+
+		Root<Queue> queueRoot = sql.from(Queue.class);
+		Join<Queue, Patient> patientJoin = queueRoot.join("patient", JoinType.INNER);
+
+		sql.multiselect(
+				queueRoot.get("queueId"), 
+				patientJoin.get("name"),
+				patientJoin.get("icNo"), 
+				queueRoot.get("startTime"), 
+				queueRoot.get("endTime"),
+				queueRoot.get("type"),
+				queueRoot.get("checkIn")
+		).where(cb.equal(queueRoot.get("checkIn"), false));
 
 		TypedQuery<QueuePatientDTO> typedQuery = em.createQuery(sql);
 		return typedQuery.getResultList();

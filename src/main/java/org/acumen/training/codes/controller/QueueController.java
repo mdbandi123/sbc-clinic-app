@@ -23,9 +23,14 @@ public class QueueController {
 	@Autowired
 	private QueueService queueService;
 
-	@GetMapping("/list")
+	@GetMapping("/details/list")
 	public List<QueuePatientDTO> getQueueOfPatients(){
 		return queueService.getQueueOfPatients();
+	}
+	
+	@GetMapping("/details/list/checkin/false")
+	public List<QueuePatientDTO> getQueueOfPatientsNotCheckedIn(){
+		return queueService.getQueueOfPatientsNotCheckedIn();
 	}
 	
 	@PostMapping("/insert")

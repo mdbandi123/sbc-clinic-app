@@ -19,6 +19,10 @@ public class QueueService {
 	public List<QueuePatientDTO> getQueueOfPatients() {
 		return queueDao.getQueueOfPatients();
 	}
+	
+	public List<QueuePatientDTO> getQueueOfPatientsNotCheckedIn() {
+		return queueDao.getQueueOfPatientsNotCheckedIn();
+	}
 
 	public boolean insertToQueue(Appointment appointment) {
 		Queue queue = new Queue();
