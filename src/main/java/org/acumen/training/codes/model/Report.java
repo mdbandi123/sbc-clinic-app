@@ -24,7 +24,7 @@ public class Report {
 	private LocalDateTime date;
 	
 	@JsonIgnore
-	private Queue queue;
+	private Appointment appointment;
 	
 	@JsonIgnore
 	private Staff staff;
@@ -66,16 +66,16 @@ public class Report {
 	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
-
-	@OneToOne(mappedBy = "report", cascade = CascadeType.ALL)
-	public Queue getQueue() {
-		return queue;
-	}
-
-	public void setQueue(Queue queue) {
-		this.queue = queue;
-	}
 	
+	@OneToOne(mappedBy = "report", cascade = CascadeType.ALL)
+	public Appointment getAppointment() {
+		return appointment;
+	}
+
+	public void setAppointment(Appointment appointment) {
+		this.appointment = appointment;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "fk_staff_id", insertable = false, updatable = false)
 	public Staff getStaff() {
@@ -85,7 +85,4 @@ public class Report {
 	public void setStaff(Staff staff) {
 		this.staff = staff;
 	}
-	
-	
-
 }

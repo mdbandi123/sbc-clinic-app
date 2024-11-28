@@ -3,7 +3,7 @@ package org.acumen.training.codes.controller;
 import java.util.List;
 
 import org.acumen.training.codes.model.Report;
-import org.acumen.training.codes.model.dto.PatientQueueReportDTO;
+import org.acumen.training.codes.model.dto.PatientReportDTO;
 import org.acumen.training.codes.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,8 +27,8 @@ public class ReportController {
 		return reportService.insertReport(appointmentId ,report);
 	}
 	
-	@GetMapping("/details/name/{name}")
-	public List<PatientQueueReportDTO> getPatientQueueReportData(@PathVariable String name){
-		return reportService.getPatientQueueReportData(name);
+	@GetMapping("/details/list/all")
+	public List<PatientReportDTO> getPatientQueueReportData(){
+		return reportService.getPatientQueueReportData();
 	}
 }

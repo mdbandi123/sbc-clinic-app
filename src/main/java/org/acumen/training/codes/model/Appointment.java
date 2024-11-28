@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,6 +27,9 @@ public class Appointment {
 	
 	@JsonIgnore
 	private Patient patient;
+	
+	@JsonIgnore
+	private Report report;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -101,5 +105,15 @@ public class Appointment {
 
 	public void setPatient(Patient patient) {
 		this.patient = patient;
+	}
+	
+	@OneToOne
+	@JoinColumn(name = "fk_report_id", insertable = false, updatable = false)
+	public Report getReport() {
+		return report;
+	}
+
+	public void setReport(Report report) {
+		this.report = report;
 	}
 }

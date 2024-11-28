@@ -6,7 +6,7 @@ import java.util.List;
 import org.acumen.training.codes.dao.ReportDao;
 import org.acumen.training.codes.model.Appointment;
 import org.acumen.training.codes.model.Report;
-import org.acumen.training.codes.model.dto.PatientQueueReportDTO;
+import org.acumen.training.codes.model.dto.PatientReportDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +27,7 @@ public class ReportService {
 		return appointmentService.updateAppointmentReportId(appointmentId, appointment);
 	}
 
-	public List<PatientQueueReportDTO> getPatientQueueReportData(String name) {
-		return reportDao.getPatientQueueReportData(name);
+	public List<PatientReportDTO> getPatientQueueReportData() {
+		return reportDao.getPatientQueueReportData();
 	}
 }

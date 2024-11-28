@@ -115,4 +115,6 @@ public class Queue {
 	public void setReport(Report report) {
 		this.report = report;
 	}
+	
+	
 }
