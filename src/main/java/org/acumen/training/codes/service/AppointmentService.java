@@ -22,6 +22,7 @@ public class AppointmentService {
 	@Autowired
 	private EmailService emailService;
 	
+	
 	public boolean insertAppointment(Appointment appointment) {
 		appointment.setIsArrival(false);
 		appointment.setIsConfirmed(false);
@@ -56,5 +57,9 @@ public class AppointmentService {
             e.printStackTrace();
         }
 		return appointmentDao.updateAppointmentConfirmationStatus(id, appointment);
+	}
+	
+	public boolean updateAppointmentReportId(Integer id, Appointment appointment) {
+		return appointmentDao.updateAppointmentReportId(id, appointment);
 	}
 }

@@ -25,14 +25,14 @@ public class ReportDao {
 	EntityManager em;
 	
 	@Transactional
-	public boolean insertReport(Report report) {
+	public Integer insertReport(Report report) {
 		try { 
 			em.persist(report);
-			return true;
+			return report.getReportId();
 		} catch (Exception e){
 			e.printStackTrace();
 		}
-		return false;
+		return 0;
 	}
 	
 	

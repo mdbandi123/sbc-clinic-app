@@ -22,9 +22,9 @@ public class ReportController {
 	@Autowired
 	private ReportService reportService;
 	
-	@PostMapping("/insert")
-	public boolean insertReport(@RequestBody Report report) {
-		return reportService.insertReport(report);
+	@PostMapping("/insert/{appointmentId}")
+	public boolean insertReport(@PathVariable Integer appointmentId, @RequestBody Report report) {
+		return reportService.insertReport(appointmentId ,report);
 	}
 	
 	@GetMapping("/details/name/{name}")

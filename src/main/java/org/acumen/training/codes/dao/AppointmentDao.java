@@ -1,5 +1,6 @@
 package org.acumen.training.codes.dao;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -159,5 +160,18 @@ public class AppointmentDao {
 			e.printStackTrace();
 		}
 		return false;
-	}
+	}	
+	
+	@Transactional
+	public boolean updateAppointmentReportId(Integer id, Appointment newAppointmentDetails) {
+		try {
+			Appointment appointment = em.find(Appointment.class, id);
+			appointment.setFkReportId(newAppointmentDetails.getFkReportId());
+			em.merge(appointment);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}	
 }
