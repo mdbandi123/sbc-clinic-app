@@ -20,6 +20,7 @@ public class Appointment {
 	private LocalDateTime date;
 	private Boolean isArrival;
 	private Integer fkPatientId;
+	private Integer fkReportId;
 	private String remark;
 	private Boolean isConfirmed;
 	
@@ -55,6 +56,16 @@ public class Appointment {
 		this.isArrival = isArrival;
 	}
 
+	
+	@Column(name = "fk_report_id")
+	public Integer getFkReportId() {
+		return fkReportId;
+	}
+
+	public void setFkReportId(Integer fkReportId) {
+		this.fkReportId = fkReportId;
+	}
+	
 	@Column(name = "fk_patient_id", nullable = false)
 	public Integer getFkPatientId() {
 		return fkPatientId;

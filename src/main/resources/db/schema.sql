@@ -48,9 +48,11 @@ CREATE TABLE appointment(
 	date TIMESTAMP NOT NULL,
 	is_arrival BOOLEAN NOT NULL,
 	fk_patient_id INTEGER NOT NULL,
+	fk_report_id INTEGER UNIQUE,
 	remark VARCHAR(100) NOT NULL,
 	is_confirmed BOOLEAN NOT NULL,
-	FOREIGN KEY (fk_patient_id) REFERENCES patient(patient_id) ON UPDATE CASCADE
+	FOREIGN KEY (fk_patient_id) REFERENCES patient(patient_id) ON UPDATE CASCADE,
+	FOREIGN KEY (fk_report_id) REFERENCES report(report_id) ON UPDATE CASCADE
 );
 
 CREATE TABLE queue(
