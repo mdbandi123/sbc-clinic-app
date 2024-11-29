@@ -1,5 +1,7 @@
 package org.acumen.training.codes.controller;
 
+import java.net.MalformedURLException;
+
 import org.acumen.training.codes.service.PdfService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -18,7 +20,12 @@ public class PdfController {
 
     @GetMapping("/generate")
     public ResponseEntity<byte[]> getPdf() {
-        byte[] pdfBytes = pdfService.generatePdf();
+        byte[] pdfBytes = null;
+		try {
+			pdfBytes = pdfService.generatePdf();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=document.pdf")
