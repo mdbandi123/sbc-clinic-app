@@ -15,6 +15,9 @@ public class QueueService {
 
 	@Autowired
 	private QueueDao queueDao;
+	
+	@Autowired
+	private SSEService sseService;
 
 	public List<QueuePatientDTO> getQueueOfPatients() {
 		return queueDao.getQueueOfPatients();
@@ -40,6 +43,7 @@ public class QueueService {
 	}
 
 	public boolean updateCheckIn(Integer id) {
-		return queueDao.updateCheckIn(id, true, LocalDateTime.now());
+		queueDao.updateCheckIn(id, true, LocalDateTime.now());
+		return sseService.sendSSE("queueCheckin");
 	}
 }

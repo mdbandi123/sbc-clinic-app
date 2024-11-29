@@ -64,7 +64,7 @@ public class QueueDao {
 				queueRoot.get("endTime"),
 				queueRoot.get("type"),
 				queueRoot.get("checkIn")
-		).where(cb.equal(queueRoot.get("checkIn"), false));
+		).where(cb.equal(queueRoot.get("checkIn"), false)).orderBy(cb.asc(queueRoot.get("startTime")));
 
 		TypedQuery<QueuePatientDTO> typedQuery = em.createQuery(sql);
 		return typedQuery.getResultList();
