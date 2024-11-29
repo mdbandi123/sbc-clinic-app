@@ -37,33 +37,93 @@ public class ReportDao {
 	
 	
 	@Transactional
-	public List<PatientReportDTO> getPatientQueueReportData() {
-	    // Get the CriteriaBuilder
+	public List<PatientReportDTO> getPatientReportData() {
 	    CriteriaBuilder cb = em.getCriteriaBuilder();
 
-	    // Create CriteriaQuery
 	    CriteriaQuery<PatientReportDTO> sql = cb.createQuery(PatientReportDTO.class);
 
-	    // Define Root entities
 	    Root<Report> reportRoot = sql.from(Report.class);
 	    Join<Report, Appointment> appointmentJoin = reportRoot.join("appointment", JoinType.INNER);
 	    Join<Appointment, Patient> patientJoin = appointmentJoin.join("patient", JoinType.INNER);
 
-	    // Select the required fields
 	    sql.multiselect(
-	        reportRoot.get("reportId"),              // Report ID
-	        appointmentJoin.get("appointmentId"),         // Appointment ID
-	        patientJoin.get("name"),           // Patient Name
-	        patientJoin.get("icNo"),           // IC Number
-	        appointmentJoin.get("date"),        // Appointment Date
+	        reportRoot.get("reportId"),             
+	        appointmentJoin.get("appointmentId"),         
+	        patientJoin.get("name"),           
+	        patientJoin.get("icNo"),       
+	        appointmentJoin.get("date"),        
 	        reportRoot.get("details")
 	    );
 
-	    // Optionally add filters (e.g., filtering by date or staff ID)
-	    // query.where(cb.equal(...), cb.between(...), etc.);
+		TypedQuery<PatientReportDTO> typedQuery = em.createQuery(sql);
+		return typedQuery.getResultList();
+	}
+	
+	@Transactional
+	public List<PatientReportDTO> getPatientReportDataByName(String name) {
+	    CriteriaBuilder cb = em.getCriteriaBuilder();
 
-	    // Execute the query
-	    
+	    CriteriaQuery<PatientReportDTO> sql = cb.createQuery(PatientReportDTO.class);
+
+	    Root<Report> reportRoot = sql.from(Report.class);
+	    Join<Report, Appointment> appointmentJoin = reportRoot.join("appointment", JoinType.INNER);
+	    Join<Appointment, Patient> patientJoin = appointmentJoin.join("patient", JoinType.INNER);
+
+	    sql.multiselect(
+	        reportRoot.get("reportId"),             
+	        appointmentJoin.get("appointmentId"),         
+	        patientJoin.get("name"),           
+	        patientJoin.get("icNo"),       
+	        appointmentJoin.get("date"),        
+	        reportRoot.get("details")
+	    ).where(cb.equal(patientJoin.get("name"), name));
+
+		TypedQuery<PatientReportDTO> typedQuery = em.createQuery(sql);
+		return typedQuery.getResultList();
+	}
+	
+	@Transactional
+	public List<PatientReportDTO> getPatientReportDataByIcNo(String icno) {
+	    CriteriaBuilder cb = em.getCriteriaBuilder();
+
+	    CriteriaQuery<PatientReportDTO> sql = cb.createQuery(PatientReportDTO.class);
+
+	    Root<Report> reportRoot = sql.from(Report.class);
+	    Join<Report, Appointment> appointmentJoin = reportRoot.join("appointment", JoinType.INNER);
+	    Join<Appointment, Patient> patientJoin = appointmentJoin.join("patient", JoinType.INNER);
+
+	    sql.multiselect(
+	        reportRoot.get("reportId"),             
+	        appointmentJoin.get("appointmentId"),         
+	        patientJoin.get("name"),           
+	        patientJoin.get("icNo"),       
+	        appointmentJoin.get("date"),        
+	        reportRoot.get("details")
+	    ).where(cb.equal(patientJoin.get("icNo"), icno));
+
+		TypedQuery<PatientReportDTO> typedQuery = em.createQuery(sql);
+		return typedQuery.getResultList();
+	}
+	
+	@Transactional
+	public List<PatientReportDTO> getPatientReportDataById(Integer id) {
+	    CriteriaBuilder cb = em.getCriteriaBuilder();
+
+	    CriteriaQuery<PatientReportDTO> sql = cb.createQuery(PatientReportDTO.class);
+
+	    Root<Report> reportRoot = sql.from(Report.class);
+	    Join<Report, Appointment> appointmentJoin = reportRoot.join("appointment", JoinType.INNER);
+	    Join<Appointment, Patient> patientJoin = appointmentJoin.join("patient", JoinType.INNER);
+
+	    sql.multiselect(
+	        reportRoot.get("reportId"),             
+	        appointmentJoin.get("appointmentId"),         
+	        patientJoin.get("name"),           
+	        patientJoin.get("icNo"),       
+	        appointmentJoin.get("date"),        
+	        reportRoot.get("details")
+	    ).where(cb.equal(reportRoot.get("reportId"), id));
+
 		TypedQuery<PatientReportDTO> typedQuery = em.createQuery(sql);
 		return typedQuery.getResultList();
 	}

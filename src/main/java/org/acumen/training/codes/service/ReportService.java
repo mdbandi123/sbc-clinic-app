@@ -27,7 +27,19 @@ public class ReportService {
 		return appointmentService.updateAppointmentReportId(appointmentId, appointment);
 	}
 
-	public List<PatientReportDTO> getPatientQueueReportData() {
-		return reportDao.getPatientQueueReportData();
+	public List<PatientReportDTO> getPatientReportData() {
+		return reportDao.getPatientReportData();
+	}
+	
+	public List<PatientReportDTO> getPatientReportDataByName(String name) {
+		return reportDao.getPatientReportDataByName(name);
+	}
+	
+	public List<PatientReportDTO> getPatientReportDataById(Integer id) {
+		return reportDao.getPatientReportDataById(id);
+	}
+	
+	public List<PatientReportDTO> getPatientReportDataByIcNo(String icno) {
+		return reportDao.getPatientReportDataByIcNo(icno);
 	}
 }

@@ -21,14 +21,29 @@ public class ReportController {
 
 	@Autowired
 	private ReportService reportService;
-	
+
 	@PostMapping("/insert/{appointmentId}")
 	public boolean insertReport(@PathVariable Integer appointmentId, @RequestBody Report report) {
-		return reportService.insertReport(appointmentId ,report);
+		return reportService.insertReport(appointmentId, report);
 	}
-	
+
 	@GetMapping("/details/list/all")
-	public List<PatientReportDTO> getPatientQueueReportData(){
-		return reportService.getPatientQueueReportData();
+	public List<PatientReportDTO> getPatientReportData() {
+		return reportService.getPatientReportData();
+	}
+
+	@GetMapping("/details/name/{name}")
+	public List<PatientReportDTO> getPatientReportDataByName(@PathVariable String name) {
+		return reportService.getPatientReportDataByName(name);
+	}
+
+	@GetMapping("/details/id/{id}")
+	public List<PatientReportDTO> getPatientReportDataById(@PathVariable Integer id) {
+		return reportService.getPatientReportDataById(id);
+	}
+
+	@GetMapping("/details/icno/{icno}")
+	public List<PatientReportDTO> getPatientReportDataByIcNo(@PathVariable String icno) {
+		return reportService.getPatientReportDataByIcNo(icno);
 	}
 }
