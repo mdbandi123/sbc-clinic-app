@@ -14,6 +14,7 @@ public class PatientService {
 	@Autowired
 	private PatientDao patientDao;
 	
+	
 	public boolean insertPatient(Patient patient) {
 		patient.setRegistrationTime(LocalDateTime.now());
 		return patientDao.insertPatient(patient);
@@ -33,6 +34,7 @@ public class PatientService {
 	
 	public boolean updatePatient(Integer id, Patient patient) {
 		return patientDao.updatePatient(id, patient);
+//		return sseService.sendSSE("updatePatient");
 	}
 	
 	public List<Patient> getAllPatients() {
