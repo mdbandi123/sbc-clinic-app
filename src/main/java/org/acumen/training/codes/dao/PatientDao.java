@@ -35,7 +35,9 @@ public class PatientDao {
 	public List<Patient> getPatientById(Integer id) {
 		List<Patient> records = new ArrayList<>();
 		Patient patient = em.find(Patient.class, id);
-		records.add(patient);
+		if(patient != null) {
+			records.add(patient);
+		}
 		return records;
 	}
 	

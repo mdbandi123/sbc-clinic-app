@@ -13,11 +13,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/appointment")
-@CrossOrigin
+@CrossOrigin(
+	    origins = "http://localhost:5173",
+	    allowedHeaders = "*",
+	    methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PATCH, RequestMethod.PUT, RequestMethod.DELETE},
+	    allowCredentials = "true"
+	)
 public class AppointmentController {
 
 	@Autowired
@@ -38,7 +44,7 @@ public class AppointmentController {
 		return appointmentService.getAppointmentsByName(name);
 	}
 	
-	@GetMapping("/details/icno/{name}")
+	@GetMapping("/details/icno/{icno}")
 	public List<AppointmentPatientDTO> getAppointmentsByIcNo(@PathVariable String icno){
 		return appointmentService.getAppointmentByIcNo(icno);
 	}
