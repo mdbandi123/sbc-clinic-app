@@ -27,6 +27,9 @@ public class AppointmentService {
 
 	@Autowired
 	private PatientService patientService;
+	
+	@Autowired
+	private SSEService sseService;
 
 	public boolean insertAppointment(Appointment appointment) {
 		appointment.setIsArrival(false);
@@ -52,13 +55,14 @@ public class AppointmentService {
 
 	public boolean updateAppointmentArrivalStatus(Integer id, Appointment appointment) {
 		appointmentDao.updateAppointmentArrivalStatus(id, appointment);
-		return queueService.insertToQueue(appointment);
+		queueService.insertToQueue(appointment);
+		return sseService.sendSSE("appointmentArrival");
 	}
 
 	public boolean updateAppointmentConfirmationStatus(Integer id, Appointment appointment) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy 'at' h:mm a");
 		String formattedDate = appointment.getDate().format(formatter);
-		String emailBody = "Greeting! This is to inform you that your appointment on %s for %s has been confirmed with appointment ID: %d"
+		String emailBody = "Greetings! This is to inform you that your appointment on %s for %s has been confirmed with appointment ID: %d"
 				.formatted(formattedDate, appointment.getRemark(), appointment.getAppointmentId());
 		try {
 			Patient patient = (Patient) patientService.getPatientById(appointment.getFkPatientId()).toArray()[0];
@@ -66,10 +70,12 @@ public class AppointmentService {
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
-		return appointmentDao.updateAppointmentConfirmationStatus(id, appointment);
+		appointmentDao.updateAppointmentConfirmationStatus(id, appointment);
+		return sseService.sendSSE("appointmentConfirmation");
 	}
 
 	public boolean updateAppointmentReportId(Integer id, Appointment appointment) {
 		return appointmentDao.updateAppointmentReportId(id, appointment);
+		
 	}
 }
