@@ -34,7 +34,6 @@ public class PatientService {
 	
 	public boolean updatePatient(Integer id, Patient patient) {
 		return patientDao.updatePatient(id, patient);
-//		return sseService.sendSSE("updatePatient");
 	}
 	
 	public List<Patient> getAllPatients() {

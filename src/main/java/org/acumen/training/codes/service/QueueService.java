@@ -44,6 +44,6 @@ public class QueueService {
 
 	public boolean updateCheckIn(Integer id) {
 		queueDao.updateCheckIn(id, true, LocalDateTime.now());
-		return sseService.sendSSE("queueCheckin");
+		return sseService.sendSSE();
 	}
 }

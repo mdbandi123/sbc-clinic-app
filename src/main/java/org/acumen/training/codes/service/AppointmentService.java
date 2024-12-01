@@ -55,8 +55,7 @@ public class AppointmentService {
 
 	public boolean updateAppointmentArrivalStatus(Integer id, Appointment appointment) {
 		appointmentDao.updateAppointmentArrivalStatus(id, appointment);
-		queueService.insertToQueue(appointment);
-		return sseService.sendSSE("appointmentArrival");
+		return queueService.insertToQueue(appointment);
 	}
 
 	public boolean updateAppointmentConfirmationStatus(Integer id, Appointment appointment) {
@@ -70,8 +69,7 @@ public class AppointmentService {
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
-		appointmentDao.updateAppointmentConfirmationStatus(id, appointment);
-		return sseService.sendSSE("appointmentConfirmation");
+		return appointmentDao.updateAppointmentConfirmationStatus(id, appointment);
 	}
 
 	public boolean updateAppointmentReportId(Integer id, Appointment appointment) {

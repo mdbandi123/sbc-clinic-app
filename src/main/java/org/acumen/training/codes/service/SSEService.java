@@ -26,12 +26,12 @@ public class SSEService {
 		return emitter;
 	}
 	
-	public boolean sendSSE(String eventName) {
+	public boolean sendSSE() {
 		for (Iterator<SseEmitter> iterator = emitters.iterator(); iterator.hasNext();) {
 		    SseEmitter emitter = iterator.next();
 
 		    try {
-		        emitter.send(SseEmitter.event().name(eventName).data("event triggered"));
+		        emitter.send(SseEmitter.event().data("event triggered"));
 		        return true;
 		    } catch (Exception e) {
 		    	e.printStackTrace();
